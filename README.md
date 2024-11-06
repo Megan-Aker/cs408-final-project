@@ -30,6 +30,5 @@ Also, another nice touch would be to add a nutrition tracker as well. This way t
 
 ## Project Wireframe
 
-TODO: Replace the wireframe below with you own design.
-
 ![wireframe](landingpage.png)
+![wireframe](log.png)
