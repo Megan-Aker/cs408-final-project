@@ -1,4 +1,4 @@
-# Web Dev Starter Code
+# Final Project
 
 ## Project Specifications
 
@@ -13,9 +13,11 @@ Basic Analytics: A simplified “My Progress” section that shows a summary of 
 
 Goal setting: Users can set fitness goals for themselves and work towards it. For example, a user can input their goal of: train for and run a half marathon by January 1st. 
 
+Progress Section: Users can also input data such as height, weight, body fat% etc. This can be a way for users to track their progress and see what has changed overtime. 
+
 ### Target Audience
 
-The primary audience will be general fitness enthusiasts who seek a simple way to log their workouts and track progress. It can also cater towards beginners who are looking to start their fitness journey. 
+The primary audience will be general fitness enthusiasts who seek a simple way to log their workouts and track progress. It can also cater towards beginners who are looking to start their fitness journey. Overall, this platform is meant to be user friendly and intuitive so anyone can use it!
 
 ### Data Management
 
@@ -30,4 +32,4 @@ Also, another nice touch would be to add a nutrition tracker as well. This way t
 
 TODO: Replace the wireframe below with you own design.
 
-![wireframe](wireframe-example.png)
+![wireframe](landingpage.png)
