@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness Tracking Log</title>
+    <link rel="stylesheet" href="css/logstyle.css">
+</head>
+<body>
+
+    <h1>Track Your Workouts</h1>
+    <nav>
+        <ul>
+          <li><a href="home.html">Home</a></li>
+          <li><a href="logging.html">Logging</a></li>
+          <li><a href="#">Goals</a></li>
+          <li><a href="#">Blog</a></li>
+        </ul>
+      </nav>
+
+    <!-- Form to add a new workout entry -->
+    <form id="workoutForm">
+        <label for="date">Date:</label>
+        <input type="date" id="date" name="date" required>
+
+        <label for="exercise">Exercise:</label>
+        <input type="text" id="exercise" name="exercise" placeholder="e.g., Squats" required>
+
+        <label for="sets">Number of Sets:</label>
+        <input type="number" id="sets" name="sets" min="1" required>
+
+        <label for="reps">Number of Reps:</label>
+        <input type="number" id="reps" name="reps" min="1" required>
+
+        <label for="weight">Weight Used (lbs):</label>
+        <input type="number" id="weight" name="weight" min="0" step="0.5" required>
+
+        <label for="notes">Additional Notes:</label>
+        <input type="text" id="notes" name="notes" placeholder="e.g., Felt strong today">
+
+        <button type="submit">Add Workout</button>
+    </form>
+
+    <!-- Table to display workout log entries -->
+    <table id="workoutTable">
+        <thead>
+            <tr>
+                <th>Date</th>
+                <th>Exercise</th>
+                <th>Sets</th>
+                <th>Reps</th>
+                <th>Weight (lbs)</th>
+                <th>Notes</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <!-- JavaScript will dynamically insert rows here -->
+        </tbody>
+    </table>
+
+    <script>
+        
+        const workoutForm = document.getElementById('workoutForm');
+        const workoutTable = document.getElementById('workoutTable').getElementsByTagName('tbody')[0];
+
+        // Your AWS API endpoint URL
+        const apiEndpoint = 'https://5lr6xnbxmi.execute-api.us-east-2.amazonaws.com/addWorkout';
+
+        async function addWorkoutToBackend(data) {
+            try {
+                const response = await fetch(apiEndpoint, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(data)
+                });
+
+                if (!response.ok) {
+                    throw new Error('Failed to add workout');
+                }
+
+                const result = await response.json();
+                console.log('Workout added:', result);
+            } catch (error) {
+                console.error('Error adding workout:', error);
+            }
+        }
+
+        workoutForm.addEventListener('submit', async function (e) {
+            e.preventDefault();
+
+            // Collect form data
+            const data = {
+                userId: 'user123',  // Replace with actual user ID if available
+                date: document.getElementById('date').value,
+                exercise: document.getElementById('exercise').value,
+                sets: document.getElementById('sets').value,
+                reps: document.getElementById('reps').value,
+                weight: document.getElementById('weight').value,
+                notes: document.getElementById('notes').value,
+            };
+
+            // Send data to AWS
+            await addWorkoutToBackend(data);
+
+            // Update the local table view
+            const newRow = workoutTable.insertRow();
+            newRow.insertCell(0).innerText = data.date;
+            newRow.insertCell(1).innerText = data.exercise;
+            newRow.insertCell(2).innerText = data.sets;
+            newRow.insertCell(3).innerText = data.reps;
+            newRow.insertCell(4).innerText = data.weight;
+            newRow.insertCell(5).innerText = data.notes;
+
+            // Add a delete button
+            const deleteCell = newRow.insertCell(6);
+            const deleteButton = document.createElement('button');
+            deleteButton.innerText = 'Delete';
+            deleteButton.onclick = function () {
+                workoutTable.deleteRow(newRow.rowIndex - 1);
+            };
+            deleteCell.appendChild(deleteButton);
+
+            // Clear the form inputs
+            workoutForm.reset();
+        });
+    </script>
+
+</body>
+</html>

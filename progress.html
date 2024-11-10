@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progress</title>
+    <link rel="stylesheet" href="css/homestyle.css">
+</head>
+<body>
+
+    <h1>Your Progress</h1>
+    <nav>
+        <ul>
+          <li><a href="home.html">Home</a></li>
+          <li><a href="logging.html">Logging</a></li>
+          <li><a href="comments.html">Comments</a></li>
+          <li><a href="progress.html">Progress</a></li>
+        </ul>
+  
+        <form class="search" aria-label="Search form">
+          <label for="q" class="sr-only">Search query</label>
+          <input type="search" name="q" id="q" placeholder="Search query">
+          <input type="submit" value="Go!">
+        </form>
+      </nav>
+
+    <!-- Quick Summary Statistics -->
+    <section id="summary">
+        <h2>Summary Statistics</h2>
+        <ul>
+            <li>Total Workouts: <span id="totalWorkouts">50</span></li>
+            <li>Most Frequent Exercise: <span id="mostFrequentExercise">-</span></li>
+            <li>Average Weight Lifted: <span id="averageWeight">135 lbs</span></li>
+            <li>Average Sets per Workout: <span id="averageSets">4</span></li>
+            <li>Average Reps per Set: <span id="averageReps">10</span></li>
+        </ul>
+    </section>
+
+    <!-- Chart Section (Graphs can be created using a library like Chart.js) -->
+    <section id="charts">
+        <h2>Progress Charts</h2>
+        <canvas id="weightOverTimeChart"></canvas>
+        <canvas id="exerciseFrequencyChart"></canvas>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+        // Example JavaScript to create a chart (using Chart.js)
+
+        // Sample data for charts (in a real app, fetch this data from the backend)
+        const weightData = [50, 75, 90, 100, 120, 130]; // Example weights over time
+        const dates = ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5', 'Week 6']; // Example dates
+
+        // Create a line chart for weight over time
+        const ctx = document.getElementById('weightOverTimeChart').getContext('2d');
+        const weightOverTimeChart = new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: dates,
+                datasets: [{
+                    label: 'Total Weight Lifted (lbs)',
+                    data: weightData,
+                    borderColor: '#826b5c',
+                    backgroundColor: 'rgba(216, 199, 185, 0.2)',
+                    fill: true,
+                }]
+            },
+            options: {
+                responsive: true,
+                scales: {
+                    y: { beginAtZero: true }
+                }
+            }
+        });
+
+        // Similar code can be used to create an exercise frequency chart
+    </script>
+
+</body>
+</html>
