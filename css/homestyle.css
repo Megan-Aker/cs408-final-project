@@ -274,3 +274,47 @@ audio {
     clip: rect(0, 0, 0, 0);
     border: 0;
 }
+
+.secondary {
+    background-color: #f7f3ed;
+    padding: 20px;
+    margin: 10px 0;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.secondary h4 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.4rem;
+    margin-top: 0;
+    color: #3a3a3a;
+}
+
+.secondary ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 10px 0;
+}
+
+.secondary ul li {
+    margin-bottom: 5px;
+}
+
+.secondary ul li a {
+    text-decoration: none;
+    color: #826b5c;
+    font-size: 1rem;
+}
+
+.secondary ul li a:hover {
+    text-decoration: underline;
+}
+
+.secondary blockquote {
+    font-size: 1.2rem;
+    font-style: italic;
+    color: #826b5c;
+    margin: 10px 0;
+    padding-left: 10px;
+    border-left: 3px solid #c4b8a8; 
+}
