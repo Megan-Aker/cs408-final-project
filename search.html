@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Search Workouts</title>
+  <link rel="stylesheet" href="css/logstyle.css">
+</head>
+<body>
+  <h1>Search Your Workouts</h1>
+  <nav>
+      <ul>
+        <li><a href="home.html">Home</a></li>
+        <li><a href="logging.html">Logging</a></li>
+        <li><a href="search.html">Search</a></li>
+        <li><a href="comments.html">Comments</a></li>
+        <li><a href="progress.html">Progress</a></li>
+      </ul>
+  </nav>
+
+  <!-- Form for filtering workouts -->
+  <form id="filterForm">
+    <label for="filterDate">Date:</label>
+    <input type="date" id="filterDate" name="filterDate">
+    <label for="filterExercise">Exercise:</label>
+    <input type="text" id="filterExercise" name="filterExercise" placeholder="e.g., Squats">
+    <button type="submit">Search</button>
+  </form>
+
+  <!-- Table to display filtered workout log entries -->
+  <table id="filteredWorkoutTable">
+      <thead>
+          <tr>
+              <th>ID</th>
+              <th>Date</th>
+              <th>Exercise</th>
+              <th>Sets</th>
+              <th>Reps</th>
+              <th>Weight (lbs)</th>
+              <th>Notes</th>
+          </tr>
+      </thead>
+      <tbody>
+          <!-- JavaScript will dynamically insert rows here -->
+      </tbody>
+  </table>
+
+  <script>
+    const filterForm = document.getElementById('filterForm');
+    const filteredWorkoutTable = document.getElementById('filteredWorkoutTable').getElementsByTagName('tbody')[0];
+
+    // API Gateway URL
+    const apiEndpoint = "https://luhc7k6wei.execute-api.us-east-2.amazonaws.com/items";
+
+    // Function to fetch filtered workouts
+    async function fetchFilteredWorkouts(filters) {
+      try {
+        const queryParams = new URLSearchParams(filters).toString();
+        const response = await fetch(`${apiEndpoint}?${queryParams}`, {
+          method: 'GET',
+        });
+
+        if (!response.ok) {
+          throw new Error(`Failed to fetch filtered workouts. Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        return data.Items || [];
+      } catch (error) {
+        console.error('Error fetching filtered workouts:', error);
+        return [];
+      }
+    }
+
+    // Function to render workouts in the table
+    function renderFilteredWorkouts(workouts) {
+      filteredWorkoutTable.innerHTML = ''; // Clear existing rows
+
+      if (workouts.length === 0) {
+        filteredWorkoutTable.innerHTML = '<tr><td colspan="7">No matching workouts found</td></tr>';
+        return;
+      }
+
+      workouts.forEach((workout) => {
+        const newRow = filteredWorkoutTable.insertRow();
+        newRow.insertCell(0).innerText = workout.id;
+        newRow.insertCell(1).innerText = workout.date;
+        newRow.insertCell(2).innerText = workout.exercise;
+        newRow.insertCell(3).innerText = workout.sets;
+        newRow.insertCell(4).innerText = workout.reps;
+        newRow.insertCell(5).innerText = workout.weight;
+        newRow.insertCell(6).innerText = workout.notes;
+      });
+    }
+
+    // Handle form submission
+    filterForm.addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const filters = {};
+      const date = document.getElementById('filterDate').value;
+      const exercise = document.getElementById('filterExercise').value;
+
+      if (date) filters.date = date;
+      if (exercise) filters.exercise = exercise;
+
+      const filteredWorkouts = await fetchFilteredWorkouts(filters);
+      renderFilteredWorkouts(filteredWorkouts);
+    });
+  </script>
+</body>
+</html>
