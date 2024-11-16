@@ -30,6 +30,6 @@ Also, another nice touch would be to add a nutrition tracker as well. This way t
 
 ## Project Wireframe
 
-![wireframe](landingpage.png)
-![wireframe](log.png)
+![wireframe](img/landingpage.png)
+![wireframe](img/log.png)
 
