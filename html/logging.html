@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Fitness Tracking Log</title>
+  <link rel="stylesheet" href="css/logstyle.css">
+</head>
+<body>
+  <h1>Track Your Workouts</h1>
+  <nav>
+      <ul>
+        <li><a href="home.html">Home</a></li>
+        <li><a href="logging.html">Logging</a></li>
+        <li><a href="search.html">Search</a></li>
+        <li><a href="comments.html">Comments</a></li>
+        <li><a href="progress.html">Progress</a></li>
+      </ul>
+  </nav>
+
+  <!-- Form to add a new workout entry -->
+  <form id="workoutForm">
+    <label for="id">ID:</label>
+    <input type="text" id="id" name="id" placeholder="Unique ID (e.g., 123)" required>
+    <label for="date">Date:</label>
+    <input type="date" id="date" name="date" required>
+    <label for="exercise">Exercise:</label>
+    <input type="text" id="exercise" name="exercise" placeholder="e.g., Squats" required>
+    <label for="sets">Number of Sets:</label>
+    <input type="number" id="sets" name="sets" min="1" required>
+    <label for="reps">Number of Reps:</label>
+    <input type="number" id="reps" name="reps" min="1" required>
+    <label for="weight">Weight Used (lbs):</label>
+    <input type="number" id="weight" name="weight" min="0" step="0.5" required>
+    <label for="notes">Additional Notes:</label>
+    <input type="text" id="notes" name="notes" placeholder="e.g., Felt strong today">
+    <button type="submit">Add Workout</button>
+  </form>
+
+  <!-- Table to display workout log entries -->
+  <table id="workoutTable">
+      <thead>
+          <tr>
+              <th>ID</th>
+              <th>Date</th>
+              <th>Exercise</th>
+              <th>Sets</th>
+              <th>Reps</th>
+              <th>Weight (lbs)</th>
+              <th>Notes</th>
+              <th>Actions</th>
+          </tr>
+      </thead>
+      <tbody>
+          <!-- JavaScript will dynamically insert rows here -->
+      </tbody>
+  </table>
+
+  <script>
+    const workoutForm = document.getElementById('workoutForm');
+    const workoutTable = document.getElementById('workoutTable').getElementsByTagName('tbody')[0];
+  
+    // API Gateway URL
+    const apiEndpoint = "https://luhc7k6wei.execute-api.us-east-2.amazonaws.com/items";
+
+    // Add a new workout
+    async function addWorkoutToBackend(data) {
+      try {
+        const response = await fetch(apiEndpoint, {
+          method: 'PUT',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(data),
+        });
+
+        if (!response.ok) {
+          throw new Error(`Failed to add workout. Status: ${response.status}`);
+        }
+      } catch (error) {
+        console.error('Error adding workout:', error);
+      }
+    }
+
+    // Delete a workout by ID
+    async function deleteWorkoutFromBackend(id) {
+      try {
+        const response = await fetch(`${apiEndpoint}/${id}`, {
+          method: 'DELETE',
+        });
+
+        if (!response.ok) {
+          throw new Error(`Failed to delete workout with ID: ${id}. Status: ${response.status}`);
+        }
+      } catch (error) {
+        console.error('Error deleting workout:', error);
+      }
+    }
+
+    // Load workouts and update table
+    async function loadWorkoutsFromBackend() {
+      try {
+        const response = await fetch(apiEndpoint, {
+          method: 'GET',
+        });
+
+        if (!response.ok) {
+          throw new Error(`Failed to load workouts. Status: ${response.status}`);
+        }
+
+        const data = await response.json();
+        const workouts = data.Items || [];
+
+        workoutTable.innerHTML = ''; // Clear table
+
+        workouts.forEach((workout) => {
+          const newRow = workoutTable.insertRow();
+          newRow.insertCell(0).innerText = workout.id;
+          newRow.insertCell(1).innerText = workout.date;
+          newRow.insertCell(2).innerText = workout.exercise;
+          newRow.insertCell(3).innerText = workout.sets;
+          newRow.insertCell(4).innerText = workout.reps;
+          newRow.insertCell(5).innerText = workout.weight;
+          newRow.insertCell(6).innerText = workout.notes;
+
+          const deleteCell = newRow.insertCell(7);
+          const deleteButton = document.createElement('button');
+          deleteButton.innerText = 'Delete';
+          deleteButton.onclick = async function () {
+            await deleteWorkoutFromBackend(workout.id);
+            newRow.remove();
+          };
+          deleteCell.appendChild(deleteButton);
+        });
+      } catch (error) {
+        console.error('Error loading workouts:', error);
+      }
+    }
+
+    // Form submission handler
+    workoutForm.addEventListener('submit', async function (e) {
+      e.preventDefault();
+
+      const data = {
+        id: document.getElementById('id').value.trim(),
+        date: document.getElementById('date').value,
+        exercise: document.getElementById('exercise').value,
+        sets: Number(document.getElementById('sets').value),
+        reps: Number(document.getElementById('reps').value),
+        weight: Number(document.getElementById('weight').value),
+        notes: document.getElementById('notes').value,
+      };
+
+      await addWorkoutToBackend(data);
+      await loadWorkoutsFromBackend();
+      workoutForm.reset();
+    });
+
+    // Load existing workouts on page load
+    window.onload = loadWorkoutsFromBackend;
+  </script>
+</body>
+</html>
+

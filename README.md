@@ -28,8 +28,14 @@ The main data that will be managed is workout logs. This will be exercise detail
 Some goals for the future would include a way for the app to calculate the user input and turn it into a graph or progression bar. This would serve as a nice visual and way for users to see their progress overtime in a more graphical way. 
 Also, another nice touch would be to add a nutrition tracker as well. This way the app can track your physical progress and nutrition progress. The users could add their protein, carb, and lipid intake. 
 
-## Project Wireframe
+### Project Wireframe
 
 ![wireframe](img/landingpage.png)
 ![wireframe](img/log.png)
 
+### How to Run
+- cd to the directory you desire to copy the project to
+-Once in the directory, copy my project:
+- Open the project in VScode, then open home.html and use the live preview extension to view
+
+### Sources
