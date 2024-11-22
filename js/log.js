@@ -1,22 +1,4 @@
-// window.onload = loaded;
-
-// /**
-//  * Simple Function that will be run when the browser is finished loading.
-//  */
-// function loaded() {
-//     // Assign to a variable so we can set a breakpoint in the debugger!
-//     const hello = sayHello();
-//     console.log(hello);
-// }
-
-// /**
-//  * This function returns the string 'hello'
-//  * @return {string} the string hello
-//  */
-// export function sayHello() {
-//     return 'hello';
-// }
-
+//functionality for loading and inputting user input to log forms
 const AWS = require('aws-sdk');
 const dynamoDb = new AWS.DynamoDB.DocumentClient();
 const tableName = 'WorkoutLogs';
@@ -35,7 +17,7 @@ exports.handler = async (event) => {
         TableName: tableName,
         Item: {
             userId: data.userId,
-            logId: `${data.userId}-${Date.now()}`, // Unique ID
+            logId: `${data.userId}-${Date.now()}`, 
             date: data.date,
             exercise: data.exercise,
             sets: data.sets,

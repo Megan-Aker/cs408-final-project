@@ -34,8 +34,13 @@ Also, another nice touch would be to add a nutrition tracker as well. This way t
 ![wireframe](img/log.png)
 
 ### How to Run
-- cd to the directory you desire to copy the project to
--Once in the directory, copy my project:
-- Open the project in VScode, then open home.html and use the live preview extension to view
-
+- Open your terminal and cd into the directory you wish to clone the project into
+- Use the Git Clone command to copy the repository: https://github.com/Megan-Aker/cs408-final-project.git 
+- Once it is copied, cd into the repo
+- Open the cloned repo in your IDE, then use live preview to view index.html to view the site.
 ### Sources
+- https://www.w3schools.com/ai/ai_chartjs.asp
+- https://www.w3schools.com/css/css_form.asp 
+- https://docs.aws.amazon.com/lambda/latest/dg/services-apigateway-tutorial.html 
+- https://www.w3schools.com/howto/howto_js_filter_lists.asp
+- https://github.com/shanep/web-dev-starter

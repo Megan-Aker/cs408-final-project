@@ -17,7 +17,7 @@ body {
     padding: 1rem;
 }
 
-/* Typography */
+/* Typography and fonts */
 h1, h2, h3, h4 {
     font-family: 'Poppins', sans-serif;
     color: #1abc9c;
@@ -46,7 +46,7 @@ p, li, table {
     color: #b0b0b0; 
 }
 
-/* Navigation */
+/* Navigation bar */
 nav {
     background: #1e1e1e; 
     display: flex;
@@ -108,44 +108,6 @@ nav .search input[type="submit"]:hover {
     background: #16a085; 
 }
 
-/* Hero Section */
-.hero {
-    background: linear-gradient(135deg, #121212, #1abc9c); 
-    text-align: center;
-    padding: 4rem 2rem;
-    border-radius: 10px;
-    margin-bottom: 2rem;
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
-    color: #e0e0e0;
-}
-
-.hero h1 {
-    font-size: 4rem;
-    margin-bottom: 1rem;
-}
-
-.hero p {
-    font-size: 1.5rem;
-    margin-bottom: 2rem;
-}
-
-.hero a {
-    display: inline-block;
-    background: #1abc9c;
-    color: #121212;
-    padding: 0.75rem 2rem;
-    text-transform: uppercase;
-    font-size: 1.2rem;
-    border-radius: 30px;
-    text-decoration: none;
-    transition: all 0.3s ease;
-}
-
-.hero a:hover {
-    background: #16a085;
-    transform: scale(1.1);
-}
-
 /* Main Layout */
 main {
     display: grid;
@@ -185,11 +147,6 @@ tbody tr:nth-child(odd) {
     background-color: #1e1e1e; 
 }
 
-/* article:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
-} */
-
 /* Styling content images */
 img {
     display: block;
@@ -202,7 +159,6 @@ img {
     padding: 1.5rem;
     border-radius: 1px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
-
 }
 
 .secondary {
@@ -219,7 +175,6 @@ img {
     font-size: 1rem;
 }
 
-
 /* Comment form */
 .comment-form {
     margin-bottom: 2rem;
@@ -234,7 +189,7 @@ img {
 .comment-form label {
     flex: 1;
     font-weight: bold;
-    color: #ffffff;
+    color: #e0e0e0;
     text-align: right;
     margin-right: 1rem;
 }
@@ -242,7 +197,7 @@ img {
 .comment-form input {
     flex: 3;
     padding: 8px;
-    border: 1px solid #c4c49a;
+    border: 1px solid #e0e0e0;
     border-radius: 4px;
 }
 
@@ -279,6 +234,7 @@ img {
     flex: 4;
     color: #e0e0e0;
 }
+
 /* Footer */
 footer {
     margin-top: 2rem;
