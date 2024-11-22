@@ -1,0 +1,144 @@
+/* General Styling */
+body {
+    font-family: 'Roboto', sans-serif;
+    margin: 0;
+    padding: 20px;
+    background-color: #121212; /* Dark background */
+    color: #e0e0e0; /* Light text for contrast */
+  }
+  
+  h1 {
+    text-align: center;
+    font-family: 'Poppins', sans-serif;
+    color: #1abc9c; /* Teal color */
+    padding: 10px;
+    margin-bottom: 20px;
+    font-size: 2.5rem;
+    text-transform: uppercase;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.6);
+  }
+  
+  /* Nav styling */
+  nav {
+    background-color: #1e1e1e; /* Dark navbar */
+    display: flex;
+    padding: 1rem 0;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #1abc9c; /* Teal border */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+  }
+  
+  nav ul {
+    list-style-type: none;
+    flex: 2;
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+  }
+  
+  nav a {
+    font-size: 1rem;
+    text-transform: uppercase;
+    text-decoration: none;
+    
+    color: #e0e0e0; 
+    transition: color 0.3s ease, background-color 0.3s ease;
+    padding: 1rem 1rem;
+    border-radius: 5px;
+  }
+  
+  nav a:hover {
+    color: #121212;
+    background-color: #1abc9c;
+  }
+  
+  h2 {
+    font-family: 'Poppins', sans-serif;
+    color: #1abc9c; 
+    margin-top: 40px;
+    font-size: 2rem;
+    text-align: center;
+  }
+  
+  /* Table Styling */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 10px;
+    background-color: #1e1e1e; /* Dark table background */
+    border-radius: 5px;
+    overflow: hidden;
+    color: #e0e0e0; /* Light text for contrast */
+  }
+  
+  th, td {
+    padding: 12px;
+    border: 1px solid #444; /* Darker border */
+    text-align: center;
+  }
+  
+  th {
+    background-color: #121212; /* Darker header */
+    color: #1abc9c; /* Teal header text */
+    font-weight: bold;
+  }
+  
+  tr:nth-child(even) {
+    background-color: #1b1b1b; /* Alternating dark rows */
+  }
+  
+  tr:nth-child(odd) {
+    background-color: #242424; /* Alternating lighter rows */
+  }
+  
+  /* Form Styling */
+  form {
+    background-color: #1e1e1e; /* Dark form background */
+    border: 1px solid #1abc9c; /* Teal border */
+    padding: 35px;
+    width: 100%;
+    max-width: 400px;
+    margin: auto;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+    border-radius: 8px;
+    color: #e0e0e0; /* Light text */
+  }
+  
+  form label {
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    color: #1abc9c; /* Teal label text */
+    margin-top: 10px;
+    display: block;
+  }
+  
+  form input[type="text"],
+  form input[type="number"] {
+    width: 100%;
+    padding: 10px;
+    margin-top: 5px;
+    margin-bottom: 15px;
+    border: 1px solid #444; /* Darker border */
+    border-radius: 5px;
+    background-color: #121212; /* Dark input background */
+    color: #e0e0e0; /* Light text */
+  }
+  
+  form button {
+    width: 100%;
+    padding: 10px;
+    background-color: #1abc9c; /* Teal button */
+    color: #121212; /* Dark text for contrast */
+    font-family: 'Poppins', sans-serif;
+    font-weight: bold;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+  
+  form button:hover {
+    background-color: #16a085; /* Slightly darker teal */
+    transform: scale(1.05);
+  }
+  
