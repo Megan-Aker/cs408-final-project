@@ -176,6 +176,16 @@ img {
 }
 
 /* Comment form */
+.show-hide {
+    cursor: pointer;
+    text-align: center;
+    width: 135px;
+    background: #1abc9c;
+    color: white;
+    font-size: 1rem;
+    border-radius: 10px;
+  }
+
 .comment-form {
     margin-bottom: 2rem;
 }
